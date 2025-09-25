@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 
@@ -38,3 +39,6 @@ Route::get('/matakuliahupdate', [MatakuliahController::class,'update']);
 Route::get('/matakuliahdestroy', [MatakuliahController::class,'destroy']);
 
 Route::get('/matakuliah/show/{kode?}', [MatakuliahController::class, 'show']);
+
+Route::get('/home', [HomeController::class, 'index']);
+
