@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\QuestionController;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 
@@ -16,12 +17,12 @@ Route::get('/mahasiswa', function () {
 });
 
 Route::get('/nama/{Zahwa}', function ($Zahwa) {
-    return 'Nama Saya: '.$Zahwa;
+    return 'Nama Saya: ' . $Zahwa;
 
 });
 
 Route::get('/nim/{Zahwa}', function ($Zahwa = '') {
-    return 'Nim Saya: '.$Zahwa;
+    return 'Nim Saya: ' . $Zahwa;
 
 });
 Route::get('/mahasiswa/{param1}', [MahasiswaController::class, 'show']);
@@ -35,10 +36,17 @@ Route::get('/matakuliahcreate', [MatakuliahController::class, 'create']);
 Route::get('/matakuliahstore', [MatakuliahController::class, 'store']);
 Route::get('/matakuliahshow', [MatakuliahController::class, 'show']);
 Route::get('/matakuliahedit', [MatakuliahController::class, 'edit']);
-Route::get('/matakuliahupdate', [MatakuliahController::class,'update']);
-Route::get('/matakuliahdestroy', [MatakuliahController::class,'destroy']);
+Route::get('/matakuliahupdate', [MatakuliahController::class, 'update']);
+Route::get('/matakuliahdestroy', [MatakuliahController::class, 'destroy']);
 
 Route::get('/matakuliah/show/{kode?}', [MatakuliahController::class, 'show']);
 
 Route::get('/home', [HomeController::class, 'index']);
 
+Route::post('question/store', [QuestionController::class, 'store'])
+    ->name('question.store');
+
+Route::get('/home', function () {
+    return view('home');
+
+});
