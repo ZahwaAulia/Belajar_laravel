@@ -116,7 +116,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <h5 class="card-title">Form Pertanyaan</h5>
+                        <h5 class="card-title">sign up from</h5>
                         <form action="{{ route('question.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
