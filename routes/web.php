@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\QuestionController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return 'Selamat Datang di Website Kampus PCR!';
@@ -50,3 +50,8 @@ Route::get('/home', function () {
     return view('home');
 
 });
+Route::get('/auth', function () {
+    return view('home');
+
+});
+Route::post('/auth/login', [AuthController::class, 'login']);
