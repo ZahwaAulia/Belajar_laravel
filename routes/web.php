@@ -5,6 +5,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PegawaiController;
 
 Route::get('/', function () {
     return 'Selamat Datang di Website Kampus PCR!';
@@ -54,4 +55,9 @@ Route::get('/auth', function () {
     return view('home');
 
 });
+Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth/login', [AuthController::class, 'login']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+Route::get('/pegawai', [PegawaiController::class, 'index']);
