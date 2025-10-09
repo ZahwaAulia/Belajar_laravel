@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'PlaywriteUSModern-VariableFont_wght';
+    src: url('../fonts/PlaywriteUSModern-VariableFont_wght.ttf');
+}
+
+.font-custom{
+    font-family: 'PlaywriteUSModern-VariableFont_wght';
+}
+.navbar-logo {
+    height: 40px; /* Adjust the height as needed */
+    width: auto; /* Maintain aspect ratio */
+}
