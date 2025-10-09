@@ -58,7 +58,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <img src="{{ asset('assets/images/logoo.jpg') }}" alt="Logo" width="40" class="me-2">
+            <img src="{{ asset('assets/images/fotoo.jpg') }}" alt="Logo" width="40" class="me-2">
             My App</a>
 
             <a class="navbar-brand" href="#">My App</a>

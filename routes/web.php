@@ -6,7 +6,7 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PegawaiController;
-
+use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 
@@ -57,7 +57,8 @@ Route::get('/auth', function () {
 });
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth/login', [AuthController::class, 'login']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard11', function () {
+    return view('dashboard111');
 });
 Route::get('/pegawai', [PegawaiController::class, 'index']);
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
