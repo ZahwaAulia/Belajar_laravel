@@ -67,4 +67,3 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('pelanggan', PelangganController::class);
 Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
 
-route('pelanggan.update', $dataPelanggan->pelanggan_id);
