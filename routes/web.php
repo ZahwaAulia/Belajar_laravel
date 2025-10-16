@@ -57,7 +57,8 @@ Route::get('/auth', function () {
 });
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth/login', [AuthController::class, 'login']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Route::get('/dashboard', function () {
+//    return view('dashboard');
+// });
 Route::get('/pegawai', [PegawaiController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
