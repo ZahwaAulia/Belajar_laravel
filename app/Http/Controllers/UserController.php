@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
+
 class UserController extends Controller
 {
     /**
@@ -27,12 +30,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data             = $request->all();
-        $data['password'] = Hash::make($request->password);
+        $request->validate([
+            'name'  => 'required|string|max:100',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed'
+        ]);
 
-        User::create($data);
-
-        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan!');
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        return redirect()->route('user.index')->with('success', 'Penambahan Data
+Berhasil!');
     }
 
     /**
@@ -57,18 +67,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->all();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
 
-        // Password hanya diupdate jika form password tidak kosong
-        if ($request->password) {
-            $data['password'] = Hash::make($request->password);
-        } else {
-            unset($data['password']);
-        }
-
-        User::findOrFail($id)->update($data);
-
-        return redirect()->route('user.index')->with('success', 'User berhasil diperbarui!');
+        User::where('id', $id)->update($data);
+        return redirect()->route('user.index')->with('success', 'Perubahan Data Berhasil!');
     }
 
     /**
@@ -77,8 +81,8 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
-        $user->delete();
 
-        return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'Data Berhasil Dihapus!');
     }
 }
