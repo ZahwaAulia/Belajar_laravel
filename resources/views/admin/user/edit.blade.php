@@ -1,15 +1,8 @@
 @extends('admin.template')
 @section('title', 'Edit User')
-
 @section('content')
-    <div class="py-4">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
 
+    <div class="py-4">
         <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
             <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                 <li class="breadcrumb-item">
@@ -22,91 +15,77 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('User.index') }}">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                <li class="breadcrumb-item"><a href="#">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
             </ol>
         </nav>
-
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
-                <h1 class="h4">Edit Data User</h1>
-                <p class="mb-0">Ubah informasi User berikut</p>
+                <h1 class="h4">Edit User</h1>
+                <p class="mb-0">Form untuk mengedit data user.</p>
             </div>
             <div>
-                <a href="{{ route('User.index') }}" class="btn btn-primary text-white">
-                    <i class="fas fa-arrow-left me-1"></i> Kembali
-                </a>
+                <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
+                    Kembali</a>
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 mb-4">
-            <div class="card border-0 shadow mb-4">
+            <div class="card border-0 shadow components-section">
                 <div class="card-body">
-                    <form action="{{ route('User.update', $dataUser->User_id) }}" method="POST">
+
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('user.update', $dataUser->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-
                         <div class="row mb-4">
                             <div class="col-lg-4 col-sm-6">
+                                <!-- Name -->
                                 <div class="mb-3">
-                                    <label for="first_name" class="form-label">First Name</label>
-                                    <input type="text" id="first_name" name="first_name" class="form-control"
-                                        value="{{ old('first_name', $dataUser->first_name) }}" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="last_name" class="form-label">Last Name</label>
-                                    <input type="text" id="last_name" name="last_name" class="form-control"
-                                        value="{{ old('last_name', $dataUser->last_name) }}" required>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="mb-3">
-                                    <label for="birthday" class="form-label">Birthday</label>
-                                    <input type="date" id="birthday" name="birthday" class="form-control"
-                                        value="{{ old('birthday', $dataUser->birthday) }}">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="gender" class="form-label">Gender</label>
-                                    <select id="gender" name="gender" class="form-select">
-                                        <option value="">-- Pilih --</option>
-                                        <option value="Male" {{ old('gender', $dataUser->gender) == 'Male' ? 'selected' : '' }}>Male</option>
-                                        <option value="Female" {{ old('gender', $dataUser->gender) == 'Female' ? 'selected' : '' }}>Female</option>
-                                        <option value="Other" {{ old('gender', $dataUser->gender) == 'Other' ? 'selected' : '' }}>Other</option>
-                                    </select>
+                                    <label for="name" class="form-label">Name</label>
+                                    <input value="{{ $dataUser->name }}" type="text" id="name" name="name"
+                                        class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-sm-12">
+                                <!-- Email -->
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control"
-                                        value="{{ old('email', $dataUser->email) }}" required>
+                                    <input value="{{ $dataUser->email }}" type="text" id="email" name="email"
+                                        class="form-control" required>
                                 </div>
 
+                                <!-- Password -->
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone</label>
-                                    <input type="text" id="phone" name="phone" class="form-control"
-                                        value="{{ old('phone', $dataUser->phone) }}" required>
-                                </div>
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                        placeholder="Biarkan kosong jika tidak diubah">
 
-                                <div class="mt-4">
-                                    <button type="submit" class="btn btn-info text-white">
-                                        <i class="fas fa-save me-1"></i> Simpan Perubahan
-                                    </button>
-                                    <a href="{{ route('User.index') }}" class="btn btn-outline-secondary ms-2">
-                                        Batal
-                                    </a>
+                                    <!-- Buttons -->
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                        <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
                     </form>
-                </div> <!-- end card-body -->
-            </div> <!-- end card -->
-        </div> <!-- end col -->
-    </div> <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
