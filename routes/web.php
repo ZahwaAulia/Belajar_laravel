@@ -6,9 +6,10 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
+
 Route::get('/', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 
@@ -60,12 +61,20 @@ Route::get('/auth', function () {
 Route::get('/auth', [AuthController::class, 'index']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 // Route::get('/dashboard', function () {
-//    return view('dashboard');
+//     return view('dashboard');
 // });
 Route::get('/pegawai', [PegawaiController::class, 'index']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('pelanggan', PelangganController::class);
-Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
+
+// Route::get('/admin', function () {
+//     return view('admin.template');
+// });
+
+Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 
 Route::resource('user', UserController::class);
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
