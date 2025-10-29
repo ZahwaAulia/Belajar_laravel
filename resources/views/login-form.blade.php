@@ -36,8 +36,8 @@
 
     <form action="{{ url('/auth/login') }}" method="POST">
         @csrf
-        <label>Username:</label>
-        <input type="text" name="username" value="{{ old('username') }}" placeholder="Masukkan username">
+        <label>Email:</label>
+        <input type="text" name="email" value="{{ old('email') }}" placeholder="Masukkan email">
 
 
         <label>Password:</label>

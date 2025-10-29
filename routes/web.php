@@ -54,12 +54,16 @@ Route::get('/home', function () {
     return view('home');
 
 });
-Route::get('/auth', function () {
-    return view('home');
+// Route::get('/auth', function () {
+//     return view('home');
 
-});
-Route::get('/auth', [AuthController::class, 'index']);
-Route::post('/auth/login', [AuthController::class, 'login']);
+// });
+// Route::get('/auth', [AuthController::class, 'index']);
+Route::get('/auth', [AuthController::class, 'index'])->name('login');
+Route::post('/auth/login', [AuthController::class,'login'])->name('auth.login');
+
+// Route::get('/auth', [AuthController::class, 'index']);
+// Route::post('/auth/login', [AuthController::class, 'login']);
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // });
@@ -74,7 +78,7 @@ Route::resource('pelanggan', PelangganController::class);
 Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 
 Route::resource('user', UserController::class);
-Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
-Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
-Route::get('/user', [UserController::class, 'index'])->name('user.index');
+// Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+// Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+// Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
+// Route::get('/user', [UserController::class, 'index'])->name('user.index');
