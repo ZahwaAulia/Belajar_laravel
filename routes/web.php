@@ -10,7 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
+Route::get('/pcr', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 
 });
