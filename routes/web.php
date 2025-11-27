@@ -9,6 +9,8 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MultipleuploadsController;
 
 Route::get('/pcr', function () {
     return 'Selamat Datang di Website Kampus PCR!';
@@ -82,3 +84,22 @@ Route::resource('user', UserController::class);
 // Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 // Route::post('/user/create', [UserController::class, 'create'])->name('user.create');
 // Route::get('/user', [UserController::class, 'index'])->name('user.index');
+// Update profile (upload foto)
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+// Delete foto
+Route::delete('/profile/delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+// Display profile
+// Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+
+Route::get('/profile', [ProfileController::class, 'index']);
+
+
+// Edit profile
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+
+Route::get('/multipleuploads', 'MultipleuploadsController@index')->name('uploads');
+Route::post('/save','MultipleuploadsController@store')->name('uploads.store');
