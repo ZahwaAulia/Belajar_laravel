@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MultipleuploadsController;
 
+
 Route::get('/pcr', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 
@@ -101,5 +102,6 @@ Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 
-Route::get('/multipleuploads', 'MultipleuploadsController@index')->name('uploads');
-Route::post('/save','MultipleuploadsController@store')->name('uploads.store');
+Route::get('/multipleuploads', [MultipleuploadsController::class, 'index'])->name('uploads');
+Route::post('/save', [MultipleuploadsController::class, 'store'])->name('uploads.store');
+
