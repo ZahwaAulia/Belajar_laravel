@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('multipleuploads', function (Blueprint $table) {
+        Schema::table('multiuploads', function (Blueprint $table) {
             $table->id();
+            $table->string('filename');
             $table->timestamps();
         });
     }
@@ -22,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('multipleuploads');
+        Schema::table('multiuploads', function (Blueprint $table) {
+            //
+        });
     }
 };
