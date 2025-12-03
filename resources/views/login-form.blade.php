@@ -34,7 +34,7 @@
     @endif
 
 
-    <form action="{{ url('/auth/login') }}" method="POST">
+    <form action="{{  route('login.process')}}" method="POST">
         @csrf
         <label>Email:</label>
         <input type="text" name="email" value="{{ old('email') }}" placeholder="Masukkan email">
