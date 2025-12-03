@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('multiuploads', function (Blueprint $table) {
-            $table->id();
-            $table->string('filename');
-            $table->timestamps();
-        });
+        if (Schema::hasTable('multiuploads')) {
+            Schema::table('multiuploads', function (Blueprint $table) {
+                if (!Schema::hasColumn('multiuploads', 'id')) {
+                    $table->id()->first();
+                }
+            });
+        }
+        // Jika tabel tidak ada → migration dilewati → TIDAK ERROR
     }
 
     /**
@@ -23,8 +26,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('multiuploads', function (Blueprint $table) {
-            //
-        });
+        if (Schema::hasTable('multiuploads')) {
+            Schema::table('multiuploads', function (Blueprint $table) {
+                // Hapus id jika mau, tapi bisa dikosongkan
+            });
+        }
     }
 };
